@@ -1,0 +1,1 @@
+export default { content: ["./index.html","./src/**/*.{js,jsx}"], theme: { extend: { colors: { navy:"#172B4D", brand:"#4366A0", teal:"#38856F", violet:"#7C68C4", canvas:"#F5F7FB", ink:"#202A3B", muted:"#68758A" }, fontFamily: { sans: ["Inter","system-ui","sans-serif"] } } } };
