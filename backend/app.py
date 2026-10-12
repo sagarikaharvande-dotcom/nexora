@@ -9,13 +9,23 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import matching
 load_dotenv()
 app = Flask(__name__)
-app.config.update(SECRET_KEY=os.environ.get("SECRET_KEY") or os.urandom(32).hex(),
+
+
+app.config.update(
+    SECRET_KEY=os.environ.get("SECRET_KEY") or os.urandom(32).hex(),
     SQLALCHEMY_DATABASE_URI=os.environ.get("DATABASE_URL", "sqlite:///nexora.db"),
     SESSION_COOKIE_HTTPONLY=True,
-SESSION_COOKIE_SAMESITE="None",
-SESSION_COOKIE_SECURE=True
-CORS(app, supports_credentials=True, origins=[os.environ.get("FRONTEND_ORIGIN", "http://localhost:5173")])
+    SESSION_COOKIE_SAMESITE="None",
+    SESSION_COOKIE_SECURE=True,
+)
+
+CORS(
+    app,
+    supports_credentials=True,
+    origins=[os.environ.get("FRONTEND_ORIGIN", "http://localhost:5173")],
+)
 db = SQLAlchemy(app)
+
 ROLES = {"student", "faculty", "company"}   # 'admin' can never be self-assigned
 MODES = {"inter", "intra", "domain", "industry"}
 
